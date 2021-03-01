@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import pl.training.runkeeper.R
+import pl.training.runkeeper.databinding.ItemForecastListBinding
 import pl.training.runkeeper.forecast.models.DayForecast
 import pl.training.runkeeper.formatDate
 import pl.training.runkeeper.formatDegrees
@@ -15,8 +16,8 @@ import pl.training.runkeeper.formatDegrees
 class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast_list, parent, false)
-        return ViewHolder(view)
+        val binding = ItemForecastListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = forecastData.size
@@ -25,20 +26,14 @@ class ForecastListAdapter(private val forecastData: List<DayForecast>) : Recycle
         viewHolder.bindView(forecastData[position])
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(private val binding: ItemForecastListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        private val description: TextView = view.findViewById(R.id.forecast_description)
-        private val date: TextView = view.findViewById(R.id.forecast_date)
-        private val minTemperature: TextView = view.findViewById(R.id.forecast_max_temperature)
-        private val maxTemperature: TextView = view.findViewById(R.id.forecast_min_temperature)
-        private val icon: ImageView = view.findViewById(R.id.forecast_icon)
-
-        fun bindView(dayForecast: DayForecast) {
-            description.text = dayForecast.description
-            date.text = formatDate(dayForecast.date)
-            maxTemperature.text = formatDegrees(dayForecast.maxTemperature)
-            minTemperature.text = formatDegrees(dayForecast.minTemperature)
-            Picasso.get().load(dayForecast.iconUrl).into(icon)
+        fun bindView(dayForecast: DayForecast) = with(binding) {
+            forecastDescription.text = dayForecast.description
+            forecastDate.text = formatDate(dayForecast.date)
+            forecastMaxTemperature.text = formatDegrees(dayForecast.maxTemperature)
+            forecastMinTemperature.text = formatDegrees(dayForecast.minTemperature)
+            Picasso.get().load(dayForecast.iconUrl).into(binding.forecastIcon)
         }
 
     }
