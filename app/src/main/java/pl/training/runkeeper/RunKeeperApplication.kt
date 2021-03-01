@@ -14,7 +14,6 @@ class RunKeeperApplication : Application() {
 
     }
 
-
     override fun onCreate() {
         super.onCreate()
         applicationGraph = DaggerApplicationGraph.builder()

@@ -28,7 +28,7 @@ class ForecastListFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_forecaast_list, container, false)
+        return inflater.inflate(R.layout.fragment_forecast_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

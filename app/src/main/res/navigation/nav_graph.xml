@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="pl.training.runkeeper.forecast.views.ForecastListFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_forecaast_list">
+        android:label="forecat_list"
+        tools:layout="@layout/fragment_forecast_list">
     </fragment>
 
 </navigation>

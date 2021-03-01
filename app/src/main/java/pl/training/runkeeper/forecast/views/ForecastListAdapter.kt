@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import pl.training.runkeeper.R
 import pl.training.runkeeper.forecast.models.DayForecast
-import pl.training.runkeeper.formatDate
-import pl.training.runkeeper.formatDegrees
+import pl.training.runkeeper.commons.formatDate
+import pl.training.runkeeper.commons.formatDegrees
 
 class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 

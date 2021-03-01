@@ -48,7 +48,7 @@
 
     <ImageView
         android:id="@+id/forecast_icon"
-        android:contentDescription="@string/icon"
+        android:contentDescription="@string/forecast_icon"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"/>
 
