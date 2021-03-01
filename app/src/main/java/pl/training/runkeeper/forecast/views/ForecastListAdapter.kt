@@ -1,17 +1,13 @@
 package pl.training.runkeeper.forecast.views
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import pl.training.runkeeper.R
+import pl.training.runkeeper.commons.formatDate
+import pl.training.runkeeper.commons.formatDegrees
 import pl.training.runkeeper.databinding.ItemForecastListBinding
 import pl.training.runkeeper.forecast.models.DayForecast
-import pl.training.runkeeper.formatDate
-import pl.training.runkeeper.formatDegrees
 
 class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 

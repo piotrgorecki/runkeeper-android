@@ -1,4 +1,4 @@
-package pl.training.runkeeper
+package pl.training.runkeeper.commons
 
 import java.text.SimpleDateFormat
 import java.util.*
