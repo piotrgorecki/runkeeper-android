@@ -11,11 +11,8 @@ import com.squareup.picasso.Picasso
 
 class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
-    private var context: Context? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        context = parent.context
-        val view = LayoutInflater.from(context).inflate(R.layout.item_forecast_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast_list, parent, false)
         return ViewHolder(view)
     }
 
