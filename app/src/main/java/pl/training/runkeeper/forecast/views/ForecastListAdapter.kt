@@ -1,16 +1,17 @@
-package pl.training.runkeeper
+package pl.training.runkeeper.forecast.views
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_forecast_list.view.forecast_date as date
-import kotlinx.android.synthetic.main.item_forecast_list.view.forecast_description as description
-import kotlinx.android.synthetic.main.item_forecast_list.view.forecast_min_temperature as minTemperature
-import kotlinx.android.synthetic.main.item_forecast_list.view.forecast_max_temperature as maxTemperature
-import kotlinx.android.synthetic.main.item_forecast_list.view.forecast_icon as icon
+import pl.training.runkeeper.R
+import pl.training.runkeeper.forecast.models.DayForecast
+import pl.training.runkeeper.formatDate
+import pl.training.runkeeper.formatDegrees
 
 class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
@@ -31,11 +32,11 @@ class ForecastListAdapter(private val forecastData: List<DayForecast>) : Recycle
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindView(dayForecast: DayForecast) {
-            view.date.text = formatDate(dayForecast.date)
-            view.description.text = dayForecast.description
-            view.maxTemperature.text = formatDegrees(dayForecast.maxTemperature)
-            view.minTemperature.text = formatDegrees(dayForecast.minTemperature)
-            Picasso.get().load(dayForecast.iconUrl).into(view.icon)
+            view.findViewById<TextView>(R.id.forecast_date).text = formatDate(dayForecast.date)
+            view.findViewById<TextView>(R.id.forecast_description).text = dayForecast.description
+            view.findViewById<TextView>(R.id.forecast_max_temperature).text = formatDegrees(dayForecast.maxTemperature)
+            view.findViewById<TextView>(R.id.forecast_min_temperature).text = formatDegrees(dayForecast.minTemperature)
+            Picasso.get().load(dayForecast.iconUrl).into(view.findViewById<ImageView>(R.id.forecast_icon))
         }
 
     }

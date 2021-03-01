@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="pl.training.runkeeper.ForecastListFragment"
+        android:name="pl.training.runkeeper.forecast.views.ForecastListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_forecaast_list">
     </fragment>
