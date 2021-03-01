@@ -1,6 +1,5 @@
 package pl.training.runkeeper.forecast.views
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import pl.training.runkeeper.formatDegrees
 class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        context = parent.context
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast_list, parent, false)
         return ViewHolder(view)
     }
