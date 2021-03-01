@@ -29,14 +29,20 @@ class ForecastListAdapter(private val forecastData: List<DayForecast>) : Recycle
         viewHolder.bindView(forecastData[position])
     }
 
-    class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        private val description: TextView = view.findViewById(R.id.forecast_description)
+        private val date: TextView = view.findViewById(R.id.forecast_date)
+        private val minTemperature: TextView = view.findViewById(R.id.forecast_max_temperature)
+        private val maxTemperature: TextView = view.findViewById(R.id.forecast_min_temperature)
+        private val icon: ImageView = view.findViewById(R.id.forecast_icon)
 
         fun bindView(dayForecast: DayForecast) {
-            view.findViewById<TextView>(R.id.forecast_date).text = formatDate(dayForecast.date)
-            view.findViewById<TextView>(R.id.forecast_description).text = dayForecast.description
-            view.findViewById<TextView>(R.id.forecast_max_temperature).text = formatDegrees(dayForecast.maxTemperature)
-            view.findViewById<TextView>(R.id.forecast_min_temperature).text = formatDegrees(dayForecast.minTemperature)
-            Picasso.get().load(dayForecast.iconUrl).into(view.findViewById<ImageView>(R.id.forecast_icon))
+            description.text = dayForecast.description
+            date.text = formatDate(dayForecast.date)
+            maxTemperature.text = formatDegrees(dayForecast.maxTemperature)
+            minTemperature.text = formatDegrees(dayForecast.minTemperature)
+            Picasso.get().load(dayForecast.iconUrl).into(icon)
         }
 
     }
