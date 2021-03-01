@@ -3,8 +3,8 @@ package pl.training.runkeeper.forecast
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import pl.training.runkeeper.forecast.adapters.api.ForecastProvider
-import pl.training.runkeeper.forecast.adapters.api.RetrofitForecastService
+import pl.training.runkeeper.forecast.adapters.provider.ForecastProvider
+import pl.training.runkeeper.forecast.adapters.provider.RetrofitForecastService
 import pl.training.runkeeper.forecast.models.ForecastService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory

@@ -1,10 +1,10 @@
-package pl.training.runkeeper.forecast.adapters.api
+package pl.training.runkeeper.forecast.adapters.provider
 
 import pl.training.runkeeper.forecast.models.DayForecast
 import pl.training.runkeeper.forecast.models.Forecast
 import java.util.*
 
-object ApiMappers {
+object ProviderMappers {
 
     fun toDomainModel(forecastDto: ForecastDto) = with(forecastDto) {
         Forecast(city.id, city.name, list.map { toDomainModel(it) })
