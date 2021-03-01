@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import pl.training.runkeeper.R
 import pl.training.runkeeper.RunKeeperApplication.Companion.applicationGraph
 import pl.training.runkeeper.commons.Logger
+import pl.training.runkeeper.databinding.FragmentForecastListBinding
 import pl.training.runkeeper.forecast.models.DayForecast
 import java.util.*
 import javax.inject.Inject
 
 class ForecastListFragment : Fragment() {
 
+    private lateinit var binding: FragmentForecastListBinding
     @Inject
     lateinit var logger: Logger
 
@@ -28,14 +28,14 @@ class ForecastListFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_forecast_list, container, false)
+        binding = FragmentForecastListBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val forecastList = view.findViewById<RecyclerView>(R.id.forecast_list)
-        forecastList.layoutManager = LinearLayoutManager(activity)
-        forecastList.adapter = ForecastListAdapter(forecastData)
+        binding.forecastList.layoutManager = LinearLayoutManager(activity)
+        binding.forecastList.adapter = ForecastListAdapter(forecastData)
         logger.log("On create...")
     }
 
