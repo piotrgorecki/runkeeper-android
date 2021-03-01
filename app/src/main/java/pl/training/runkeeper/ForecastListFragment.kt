@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_forecaast_list.forecast_list as forecastList
+import androidx.recyclerview.widget.RecyclerView
 
 class ForecastListFragment : Fragment() {
 
@@ -22,6 +22,7 @@ class ForecastListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val forecastList = view.findViewById<RecyclerView>(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(activity)
         forecastList.adapter = ForecastArrayListAdapter(forecastData)
     }
