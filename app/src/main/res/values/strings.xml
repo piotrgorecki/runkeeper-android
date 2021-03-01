@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">RunKeeper</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
     <string name="forecast_date">Date</string>
     <string name="forecast_description">Description</string>
     <string name="forecast_max_temperature">Max. temperature</string>
     <string name="forecast_min_temperature">Min. temperature</string>
-    <string name="icon">Icon</string>
+    <string name="forecast_icon">Icon</string>
 </resources>

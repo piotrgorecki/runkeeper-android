@@ -1,14 +1,9 @@
 package pl.training.runkeeper.forecast.models
 
-import io.reactivex.schedulers.Schedulers
-import pl.training.runkeeper.forecast.adapters.api.ApiMappers.toDomainModel
-import pl.training.runkeeper.forecast.adapters.api.ForecastProvider
+import io.reactivex.Observable
 
-class ForecastService(private val forecastProvider: ForecastProvider) {
+interface ForecastService {
 
-    fun getForecast(cityName: String) = forecastProvider.getWeather(cityName)
-            .map { toDomainModel(it) }
-            .toObservable()
-            .subscribeOn(Schedulers.io())
+    fun getForecast(cityName: String): Observable<Forecast>
 
 }

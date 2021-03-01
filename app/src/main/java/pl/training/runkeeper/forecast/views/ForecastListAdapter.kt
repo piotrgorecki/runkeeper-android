@@ -1,19 +1,15 @@
 package pl.training.runkeeper.forecast.views
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import pl.training.runkeeper.R
 import pl.training.runkeeper.databinding.ItemForecastListBinding
 import pl.training.runkeeper.forecast.models.DayForecast
-import pl.training.runkeeper.formatDate
-import pl.training.runkeeper.formatDegrees
+import pl.training.runkeeper.commons.formatDate
+import pl.training.runkeeper.commons.formatDegrees
 
-class ForecastListAdapter(private val forecastData: List<DayForecast>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(private var forecastData: List<DayForecast> = emptyList()) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemForecastListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,6 +20,11 @@ class ForecastListAdapter(private val forecastData: List<DayForecast>) : Recycle
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bindView(forecastData[position])
+    }
+
+    fun update(forecastData: List<DayForecast>) {
+        this.forecastData = forecastData
+        notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: ItemForecastListBinding) : RecyclerView.ViewHolder(binding.root) {

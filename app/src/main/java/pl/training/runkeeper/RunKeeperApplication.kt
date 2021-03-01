@@ -4,7 +4,6 @@ import android.app.Application
 import pl.training.runkeeper.configuration.ApplicationGraph
 import pl.training.runkeeper.configuration.DaggerApplicationGraph
 
-
 class RunKeeperApplication : Application() {
 
     companion object {
@@ -13,7 +12,6 @@ class RunKeeperApplication : Application() {
             private set
 
     }
-
 
     override fun onCreate() {
         super.onCreate()
