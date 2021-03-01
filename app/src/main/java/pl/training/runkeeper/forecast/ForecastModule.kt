@@ -7,7 +7,7 @@ import pl.training.runkeeper.forecast.adapters.api.ForecastProvider
 import pl.training.runkeeper.forecast.adapters.api.RetrofitForecastService
 import pl.training.runkeeper.forecast.models.ForecastService
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -20,7 +20,7 @@ class ForecastModule {
         .baseUrl("https://api.openweathermap.org/data/2.5/")
         .client(httpClient)
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
         .create(ForecastProvider::class.java)
 
