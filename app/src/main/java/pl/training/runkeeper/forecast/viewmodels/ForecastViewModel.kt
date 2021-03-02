@@ -7,12 +7,11 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
-import pl.training.runkeeper.RunKeeperApplication
 import pl.training.runkeeper.RunKeeperApplication.Companion.applicationGraph
 import pl.training.runkeeper.commons.Logger
 import pl.training.runkeeper.forecast.models.Forecast
-import pl.training.runkeeper.forecast.models.ForecastRepository
 import pl.training.runkeeper.forecast.models.ForecastProvider
+import pl.training.runkeeper.forecast.models.ForecastRepository
 import javax.inject.Inject
 
 class ForecastViewModel : ViewModel() {
