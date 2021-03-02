@@ -2,6 +2,7 @@ package pl.training.runkeeper
 
 import android.app.Application
 import pl.training.runkeeper.configuration.ApplicationGraph
+import pl.training.runkeeper.configuration.ApplicationModule
 import pl.training.runkeeper.configuration.DaggerApplicationGraph
 
 class RunKeeperApplication : Application() {
@@ -16,6 +17,7 @@ class RunKeeperApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         applicationGraph = DaggerApplicationGraph.builder()
+            .applicationModule(ApplicationModule(this))
             .build()
     }
 

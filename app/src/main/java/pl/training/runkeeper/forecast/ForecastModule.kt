@@ -3,7 +3,10 @@ package pl.training.runkeeper.forecast
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import pl.training.runkeeper.configuration.ApplicationDatabase
+import pl.training.runkeeper.forecast.adapters.persistence.ForecastDao
 import pl.training.runkeeper.forecast.adapters.persistence.InMemoryForecastRepository
+import pl.training.runkeeper.forecast.adapters.persistence.RoomForecastRepository
 import pl.training.runkeeper.forecast.adapters.provider.ForecastApi
 import pl.training.runkeeper.forecast.adapters.provider.RetrofitForecastProvider
 import pl.training.runkeeper.forecast.models.ForecastRepository
@@ -30,8 +33,16 @@ class ForecastModule {
     @Provides
     fun forecastProvider(forecastApi: ForecastApi): ForecastProvider = RetrofitForecastProvider(forecastApi)
 
+//    @Singleton
+//    @Provides
+//    fun inMemoryForecastRepository(): ForecastRepository = InMemoryForecastRepository()Singleton
+
     @Singleton
     @Provides
-    fun inMemoryForecastRepository(): ForecastRepository = InMemoryForecastRepository()
+    fun forecastDao(database: ApplicationDatabase): ForecastDao = database.forecastDao()
+
+    @Singleton
+    @Provides
+    fun roomForecastRepository(forecastDao: ForecastDao): ForecastRepository = RoomForecastRepository(forecastDao)
 
 }
