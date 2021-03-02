@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding4.widget.textChanges
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -61,6 +64,19 @@ class ForecastListFragment : Fragment() {
                 .addTo(disposableBag)
         viewModel.forecastData().observe(viewLifecycleOwner) {
             forecastListAdapter.update(it.data)
+        }
+        viewModel.isLoading().observe(viewLifecycleOwner) {
+            with(binding) {
+                forecastCityName.isEnabled = !it
+                forecastList.isVisible = !it
+                forecastActivityIndicator.isVisible = it
+            }
+        }
+        viewModel.errorMessage().observe(viewLifecycleOwner) {
+            //Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
+                .setAction("Ok") {  }
+                .show()
         }
     }
 

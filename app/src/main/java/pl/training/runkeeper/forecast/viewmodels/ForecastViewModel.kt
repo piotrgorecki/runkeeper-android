@@ -25,21 +25,39 @@ class ForecastViewModel : ViewModel() {
 
     private val disposableBag = CompositeDisposable()
     private val forecastData = MutableLiveData<Forecast>()
+    private val isLoading = MutableLiveData<Boolean>()
+    private val errorMessage = MutableLiveData<String>()
 
     init {
         applicationGraph.inject(this)
     }
 
     fun getForecast(cityName: String) {
+        logger.log(cityName)
+        isLoading.postValue(true)
         val cachedForecast = forecastRepository.findByCityName(cityName)
         val forecast = forecastProvider.getForecast(cityName).flatMap(forecastRepository::save)
         Maybe.concat(cachedForecast, forecast)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(forecastData::postValue) { logger.log(it.toString()) }
+            .subscribe(this::onForecastRefreshed, this::onForecastRefreshedError)
             .addTo(disposableBag)
     }
 
+    private fun onForecastRefreshed(forecast: Forecast) {
+        isLoading.postValue(false)
+        forecastData.postValue(forecast)
+    }
+
+    private fun onForecastRefreshedError(throwable: Throwable) {
+        isLoading.postValue(false)
+        errorMessage.postValue("Refresh failed")
+    }
+
     fun forecastData(): LiveData<Forecast> = forecastData
+
+    fun isLoading(): LiveData<Boolean> = isLoading
+
+    fun errorMessage(): LiveData<String> = errorMessage
 
     override fun onCleared() {
         super.onCleared()
