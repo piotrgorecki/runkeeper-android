@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import pl.training.runkeeper.RunKeeperApplication
+import pl.training.runkeeper.RunKeeperApplication.Companion.applicationGraph
 import pl.training.runkeeper.commons.Logger
 import pl.training.runkeeper.forecast.models.Forecast
 import pl.training.runkeeper.forecast.models.ForecastRepository
@@ -16,20 +17,18 @@ import javax.inject.Inject
 
 class ForecastViewModel : ViewModel() {
 
-    private val disposableBag = CompositeDisposable()
-    private val forecastData = MutableLiveData<Forecast>()
-
     @Inject
     lateinit var logger: Logger
-
     @Inject
     lateinit var forecastProvider: ForecastProvider
-
     @Inject
     lateinit var forecastRepository: ForecastRepository
 
+    private val disposableBag = CompositeDisposable()
+    private val forecastData = MutableLiveData<Forecast>()
+
     init {
-        RunKeeperApplication.applicationGraph.inject(this)
+        applicationGraph.inject(this)
     }
 
     fun getForecast(cityName: String) {
