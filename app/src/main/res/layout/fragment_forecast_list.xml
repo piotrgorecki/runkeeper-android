@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".forecast.views.ForecastListFragment">
 
+    <EditText
+        android:id="@+id/forecast_city_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/forecast_enter_city_name"
+        android:textAlignment="center"
+        android:lines="0"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:padding="@dimen/padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/forecast_list"
         android:layout_width="0dp"
@@ -14,6 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/forecast_city_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

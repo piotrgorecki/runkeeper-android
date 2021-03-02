@@ -1,4 +1,5 @@
 <resources>
     <dimen name="big_space">20dp</dimen>
     <dimen name="icon_size">40dp</dimen>
+    <dimen name="padding">20dp</dimen>
 </resources>

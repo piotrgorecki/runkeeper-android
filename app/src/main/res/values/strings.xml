@@ -6,4 +6,5 @@
     <string name="forecast_max_temperature">Max. temperature</string>
     <string name="forecast_min_temperature">Min. temperature</string>
     <string name="forecast_icon">Icon</string>
+    <string name="forecast_enter_city_name">Enter city name</string>
 </resources>

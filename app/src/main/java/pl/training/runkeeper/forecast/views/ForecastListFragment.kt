@@ -4,30 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.addTo
-import pl.training.runkeeper.RunKeeperApplication.Companion.applicationGraph
-import pl.training.runkeeper.commons.Logger
 import pl.training.runkeeper.databinding.FragmentForecastListBinding
-import pl.training.runkeeper.forecast.models.ForecastService
-import javax.inject.Inject
+import pl.training.runkeeper.forecast.viewmodels.ForecastViewModel
 
 class ForecastListFragment : Fragment() {
 
-    private val disposableBag = CompositeDisposable()
+    private val viewModel: ForecastViewModel by activityViewModels()
     private val forecastListAdapter = ForecastListAdapter()
     private lateinit var binding: FragmentForecastListBinding
-    @Inject
-    lateinit var logger: Logger
-    @Inject
-    lateinit var forecastService: ForecastService
-
-    init {
-        applicationGraph.inject(this)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentForecastListBinding.inflate(layoutInflater)
@@ -36,18 +24,22 @@ class ForecastListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.forecastList.layoutManager = LinearLayoutManager(activity)
-        binding.forecastList.adapter = forecastListAdapter
-
-        forecastService.getForecast("warsaw")
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ forecastListAdapter.update(it.data) }, { logger.log(it.toString()) })
-            .addTo(disposableBag)
+        initViews()
+        bindViews()
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        disposableBag.clear()
+    private fun initViews() {
+        binding.forecastList.layoutManager = LinearLayoutManager(activity)
+        binding.forecastList.adapter = forecastListAdapter
+    }
+
+    private fun bindViews() {
+        binding.forecastCityName.doAfterTextChanged {
+            viewModel.getForecast(it.toString())
+        }
+        viewModel.forecastData().observe(viewLifecycleOwner) {
+            forecastListAdapter.update(it.data)
+        }
     }
 
 }
