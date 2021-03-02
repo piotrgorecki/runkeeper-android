@@ -3,8 +3,10 @@ package pl.training.runkeeper.forecast
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import pl.training.runkeeper.forecast.adapters.persistence.InMemoryForecastRepository
 import pl.training.runkeeper.forecast.adapters.provider.ForecastProvider
 import pl.training.runkeeper.forecast.adapters.provider.RetrofitForecastService
+import pl.training.runkeeper.forecast.models.ForecastRepository
 import pl.training.runkeeper.forecast.models.ForecastService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -27,5 +29,9 @@ class ForecastModule {
     @Singleton
     @Provides
     fun forecastService(forecastProvider: ForecastProvider): ForecastService = RetrofitForecastService(forecastProvider)
+
+    @Singleton
+    @Provides
+    fun inMemoryForecastRepository(): ForecastRepository = InMemoryForecastRepository()
 
 }
