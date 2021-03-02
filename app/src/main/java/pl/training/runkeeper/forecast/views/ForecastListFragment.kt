@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +11,7 @@ import com.jakewharton.rxbinding4.widget.textChanges
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
-import pl.training.runkeeper.RunKeeperApplication
+import pl.training.runkeeper.RunKeeperApplication.Companion.applicationGraph
 import pl.training.runkeeper.commons.Logger
 import pl.training.runkeeper.databinding.FragmentForecastListBinding
 import pl.training.runkeeper.forecast.viewmodels.ForecastViewModel
@@ -29,7 +28,7 @@ class ForecastListFragment : Fragment() {
     lateinit var logger: Logger
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        RunKeeperApplication.applicationGraph.inject(this)
+        applicationGraph.inject(this)
         binding = FragmentForecastListBinding.inflate(layoutInflater)
         return binding.root
     }
