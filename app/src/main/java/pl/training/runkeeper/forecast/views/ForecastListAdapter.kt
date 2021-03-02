@@ -11,11 +11,11 @@ import pl.training.runkeeper.forecast.models.DayForecast
 import pl.training.runkeeper.commons.formatDate
 import pl.training.runkeeper.commons.formatDegrees
 
-class ForecastListAdapter(private var forecastData: List<DayForecast> = emptyList()) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(private var forecastData: List<DayForecast> = emptyList(), var tapListener: (DayForecast) -> Unit = {}) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast_list, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, tapListener)
     }
 
     override fun getItemCount() = forecastData.size
@@ -29,11 +29,12 @@ class ForecastListAdapter(private var forecastData: List<DayForecast> = emptyLis
         notifyDataSetChanged()
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, private val tapListener: (DayForecast) -> Unit) : RecyclerView.ViewHolder(view) {
 
         private val binding = ItemForecastListBinding.bind(view)
 
         fun bindView(dayForecast: DayForecast) = with(binding) {
+            root.setOnClickListener { tapListener(dayForecast) }
             forecastDescription.text = dayForecast.description
             forecastDate.text = formatDate(dayForecast.date)
             forecastMaxTemperature.text = formatDegrees(dayForecast.maxTemperature)
