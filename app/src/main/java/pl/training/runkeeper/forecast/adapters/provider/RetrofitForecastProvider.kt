@@ -10,6 +10,5 @@ class RetrofitForecastProvider(private val forecastApi: ForecastApi, private val
     override fun getForecast(cityName: String): Maybe<Forecast> = forecastApi.getWeather(cityName)
             .map(mapper)
             .subscribeOn(Schedulers.io())
-            .toMaybe()
 
 }
