@@ -58,6 +58,7 @@ class ForecastListFragment : Fragment() {
         binding.forecastCityName.textChanges()
                 .map { it.toString() }
                 .filter { it.isNotBlank() }
+                .distinct()
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(viewModel::getForecast) { logger.log(it.toString()) }

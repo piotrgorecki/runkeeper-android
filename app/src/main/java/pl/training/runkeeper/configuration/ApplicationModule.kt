@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import pl.training.runkeeper.commons.AndroidLogger
 import pl.training.runkeeper.commons.Logger
+import pl.training.runkeeper.commons.UserPreferences
 import javax.inject.Singleton
 
 @Module
@@ -37,5 +38,9 @@ class ApplicationModule(private val application: Application) {
     fun database(context: Context): ApplicationDatabase = Room.databaseBuilder(context, ApplicationDatabase::class.java, "database")
             .fallbackToDestructiveMigration()
             .build()
+
+    @Singleton
+    @Provides
+    fun userPreferences(context: Context) = UserPreferences(context)
 
 }

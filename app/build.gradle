@@ -49,7 +49,6 @@ dependencies {
     implementation "androidx.room:room-rxjava3:$room_version"
     implementation "androidx.datastore:datastore:$datastore_version"
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
-    implementation "androidx.datastore:datastore-rxjava3:$datastore_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "com.squareup.picasso:picasso:2.71828"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
