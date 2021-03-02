@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.kotlin.addTo
 import pl.training.runkeeper.RunKeeperApplication
 import pl.training.runkeeper.commons.Logger
 import pl.training.runkeeper.forecast.models.Forecast
-import pl.training.runkeeper.forecast.models.ForecastService
+import pl.training.runkeeper.forecast.models.ForecastProvider
 import javax.inject.Inject
 
 class ForecastViewModel : ViewModel() {
@@ -20,14 +20,14 @@ class ForecastViewModel : ViewModel() {
     @Inject
     lateinit var logger: Logger
     @Inject
-    lateinit var forecastService: ForecastService
+    lateinit var forecastProvider: ForecastProvider
 
     init {
         RunKeeperApplication.applicationGraph.inject(this)
     }
 
     fun getForecast(cityName: String) {
-        forecastService.getForecast(cityName)
+        forecastProvider.getForecast(cityName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(forecastData::postValue) { logger.log(it.toString()) }
                 .addTo(disposableBag)
