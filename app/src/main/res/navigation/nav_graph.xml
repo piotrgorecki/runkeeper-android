@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/forecast_tab">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/forecast_tab"
         android:name="pl.training.runkeeper.forecast.views.ForecastListFragment"
-        android:label="forecast_list"
+        android:label="Forecast"
         tools:layout="@layout/fragment_forecast_list">
         <action
             android:id="@+id/show_forecast_details"
@@ -19,11 +19,16 @@
     </fragment>
 
     <fragment
+        android:id="@+id/profile_tab"
+        android:name="pl.training.runkeeper.profile.views.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile"></fragment>
+
+    <fragment
         android:id="@+id/SecondFragment"
         android:name="pl.training.runkeeper.forecast.views.ForecastDetailsFragment"
-        android:label="forecast_details"
-        tools:layout="@layout/fragment_forecast_details">
-    </fragment>
+        android:label="Forecast details"
+        tools:layout="@layout/fragment_forecast_details"></fragment>
 
     <fragment
         android:id="@+id/SettingsFragment"
