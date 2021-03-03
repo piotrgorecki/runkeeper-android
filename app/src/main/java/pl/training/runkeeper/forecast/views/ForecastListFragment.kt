@@ -1,5 +1,6 @@
 package pl.training.runkeeper.forecast.views
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
+import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding4.widget.textChanges
@@ -25,7 +28,7 @@ import pl.training.runkeeper.forecast.viewmodels.ForecastViewModel
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class ForecastListFragment : Fragment() {
+class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val disposableBag = CompositeDisposable()
     private val viewModel: ForecastViewModel by activityViewModels()
@@ -37,6 +40,7 @@ class ForecastListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         applicationGraph.inject(this)
         binding = FragmentForecastListBinding.inflate(layoutInflater)
+        getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this)
         return binding.root
     }
 
@@ -85,5 +89,16 @@ class ForecastListFragment : Fragment() {
         super.onDestroy()
         disposableBag.clear()
     }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        logger.log(key ?: "")
+        // TODO Zaimplementować obsługę zmiany opcji (ilość dni i cache)
+    }
+
+    /*private fun enableCache() {
+        getDefaultSharedPreferences(activity).edit()
+            .putBoolean("cache_enabled", true)
+            .apply()
+    }*/
 
 }

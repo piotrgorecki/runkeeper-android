@@ -13,6 +13,9 @@
         <action
             android:id="@+id/show_forecast_details"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/show_settings"
+            app:destination="@id/SettingsFragment" />
     </fragment>
 
     <fragment
@@ -20,6 +23,12 @@
         android:name="pl.training.runkeeper.forecast.views.ForecastDetailsFragment"
         android:label="forecast_details"
         tools:layout="@layout/fragment_forecast_details">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="pl.training.runkeeper.commons.views.SettingsFragment"
+        android:label="settings">
     </fragment>
 
 </navigation>

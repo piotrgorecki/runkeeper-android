@@ -1,6 +1,7 @@
 package pl.training.runkeeper.forecast.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,16 @@ class ForecastDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentForecastDetailsBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // TODO Stworzyć widok szczegółowy pogody
+
+        binding.forecastDetailsImageBox.setOnClickListener {
+            Log.d("###", "Click")
+        }
     }
 
 }

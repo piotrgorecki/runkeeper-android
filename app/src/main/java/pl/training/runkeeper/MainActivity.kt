@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +21,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.show_settings)
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

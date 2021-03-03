@@ -60,6 +60,7 @@ class ForecastViewModel : ViewModel() {
     private fun onForecastRefreshedError(throwable: Throwable) {
         isLoading.postValue(false)
         errorMessage.postValue("Refresh failed")
+        logger.log("Refresh failed ${throwable::class.java.name}")
     }
 
     fun forecastData(): LiveData<Forecast> = forecastData

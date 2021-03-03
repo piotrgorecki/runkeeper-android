@@ -7,4 +7,7 @@
     <string name="forecast_min_temperature">Min. temperature</string>
     <string name="forecast_icon">Icon</string>
     <string name="forecast_enter_city_name">Enter city name</string>
+    <string name="forecast_settings">Forecast</string>
+    <string name="forecast_duration">Forecast duration</string>
+    <string name="cache">Cache</string>
 </resources>
