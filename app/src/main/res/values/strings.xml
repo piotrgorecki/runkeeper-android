@@ -10,4 +10,7 @@
     <string name="forecast_settings">Forecast</string>
     <string name="forecast_duration">Forecast duration</string>
     <string name="cache">Cache</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="press_button_to_close_popup">Press button to close popup</string>
 </resources>
