@@ -14,4 +14,8 @@
     <string name="cancel">Cancel</string>
     <string name="press_button_to_close_popup">Press button to close popup</string>
     <string name="tab_forecast">Forecast</string>
+    <string name="profile_date_of_birth">Date of birth</string>
+    <string name="tab_profile">Profile</string>
+    <string name="profile_personal_info">Personal info</string>
+    <string name="profile_email_address">Email address</string>
 </resources>

@@ -3,4 +3,5 @@
     <dimen name="icon_size">40dp</dimen>
     <dimen name="padding">20dp</dimen>
     <dimen name="font_size">12sp</dimen>
+    <dimen name="header">24sp</dimen>
 </resources>

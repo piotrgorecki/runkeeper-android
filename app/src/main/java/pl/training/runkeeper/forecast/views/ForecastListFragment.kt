@@ -59,7 +59,12 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
     }
 
     private fun bindViews() {
-        binding.forecastCityName.textChanges()
+        val cityName = binding.forecastCityName
+        val swipeToRefresh = binding.forecastSwipeToRefresh
+        val forecastList = binding.forecastList
+        val activityIndicator = binding.forecastActivityIndicator
+
+        cityName.textChanges()
                 .map { it.toString() }
                 .filter { it.isNotBlank() }
                 .distinct()
@@ -67,15 +72,21 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(viewModel::getForecast) { logger.log(it.toString()) }
                 .addTo(disposableBag)
+        swipeToRefresh.setOnRefreshListener {
+            if (cityName.text.isNotEmpty()) {
+                viewModel.getForecast(cityName.text.toString())
+            } else {
+                swipeToRefresh.isRefreshing = false
+            }
+        }
         viewModel.forecastData().observe(viewLifecycleOwner) {
             forecastListAdapter.update(it.data)
         }
         viewModel.isLoading().observe(viewLifecycleOwner) {
-            with(binding) {
-                forecastCityName.isEnabled = !it
+                cityName.isEnabled = !it
                 forecastList.isVisible = !it
-                forecastActivityIndicator.isVisible = it
-            }
+                activityIndicator.isVisible = it
+                swipeToRefresh.isRefreshing = false
         }
         viewModel.errorMessage().observe(viewLifecycleOwner) {
             //Toast.makeText(activity, it, Toast.LENGTH_LONG).show()

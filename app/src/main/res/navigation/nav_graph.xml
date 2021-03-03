@@ -22,13 +22,13 @@
         android:id="@+id/profile_tab"
         android:name="pl.training.runkeeper.profile.views.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile"></fragment>
+        tools:layout="@layout/fragment_profile"/>
 
     <fragment
         android:id="@+id/SecondFragment"
         android:name="pl.training.runkeeper.forecast.views.ForecastDetailsFragment"
         android:label="Forecast details"
-        tools:layout="@layout/fragment_forecast_details"></fragment>
+        tools:layout="@layout/fragment_forecast_details"/>
 
     <fragment
         android:id="@+id/SettingsFragment"
