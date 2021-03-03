@@ -47,6 +47,9 @@ class ProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 .addTo(disposableBag)
             dateOfBirth.setOnClickListener { createDateDialog(context).show() }
         }
+
+        //TODO Uzupełnić formularz tak jak na iOS
+
     }
 
     private fun createDateDialog(context: Context): DatePickerDialog {

@@ -1,5 +1,7 @@
 package pl.training.runkeeper
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import pl.training.runkeeper.commons.SampleBroadcastReceiver
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +24,16 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.forecast_tab, R.id.profile_tab))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction("pl.training.runkeeper.action.CUSTOM_ACTION")
+        val receiver = SampleBroadcastReceiver()
+        registerReceiver(receiver, intentFilter)
+
+        val intent = Intent()
+        intent.putExtra("message", "Hello there")
+        intent.action = "pl.training.runkeeper.action.CUSTOM_ACTION"
+        sendBroadcast(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
