@@ -2,9 +2,11 @@ package pl.training.runkeeper.forecast.views
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -20,6 +22,7 @@ import pl.training.runkeeper.R
 import pl.training.runkeeper.RunKeeperApplication.Companion.applicationGraph
 import pl.training.runkeeper.commons.Logger
 import pl.training.runkeeper.databinding.FragmentForecastListBinding
+import pl.training.runkeeper.forecast.models.DayForecast
 import pl.training.runkeeper.forecast.viewmodels.ForecastViewModel
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -32,6 +35,8 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
     private lateinit var binding: FragmentForecastListBinding
     @Inject
     lateinit var logger: Logger
+
+    private var selectedDayForecast: DayForecast? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         applicationGraph.inject(this)
@@ -47,7 +52,12 @@ class ForecastListFragment : Fragment(), SharedPreferences.OnSharedPreferenceCha
     }
 
     private fun initViews() {
-        forecastListAdapter.tapListener = { findNavController().navigate(R.id.show_forecast_details) }
+        forecastListAdapter.tapListener = { dayForecast: DayForecast ->
+            Log.d("%%% day", dayForecast.toString())
+
+            val bundle = bundleOf(dayForecast)
+            findNavController().navigate(R.id.show_forecast_details, bundle)
+        }
         with (binding) {
             forecastList.layoutManager = LinearLayoutManager(activity)
             forecastList.adapter = forecastListAdapter

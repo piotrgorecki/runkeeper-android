@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="image" format="reference"/>
+    <attr name="text" format="string"/>
+
+
     <declare-styleable name="ImageBox">
-        <attr name="image" format="reference"/>
-        <attr name="text" format="string"/>
+        <attr name="image"/>
+        <attr name="text"/>
+    </declare-styleable>
+
+    <declare-styleable name="DayForecastDetail">
+        <attr name="image"/>
+        <attr name="text"/>
     </declare-styleable>
 </resources>

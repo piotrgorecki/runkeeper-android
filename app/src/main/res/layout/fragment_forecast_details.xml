@@ -4,17 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".forecast.views.ForecastDetailsFragment">
 
-    <pl.training.runkeeper.commons.views.ImageBox
-        android:id="@+id/forecast_details_image_box"
+    <pl.training.runkeeper.forecast.views.DayForecastDetail
+        android:id="@+id/day_details_min_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:image="@drawable/first_image"
-        app:text="Forecast data"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="120dp"
+        app:image="@drawable/first_image"
+        app:text="20 C" />
+
+    <pl.training.runkeeper.forecast.views.DayForecastDetail
+        android:id="@+id/day_details_max_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day_details_min_temperature"
+        android:layout_marginTop="@dimen/padding"
+        app:image="@drawable/first_image"
+        app:text="15 C" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
